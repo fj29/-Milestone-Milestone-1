@@ -1,11 +1,11 @@
-package Module4.Part5;
+package Module5.Part5;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Room implements AutoCloseable{
-    protected static Server server;// used to refer to accessible server functions
+public class Room implements AutoCloseable {
+    protected static Server server; // used to refer to accessible server functions
     private String name;
     private List<ServerThread> clients = new ArrayList<ServerThread>();
     private boolean isRunning = false;
@@ -177,7 +177,7 @@ public class Room implements AutoCloseable{
             }
         }
     }
-    protected synchronized void sendConnectionStatus(ServerThread sender, boolean isConnected){
+    protected synchronized void sendConnectionStatus(ServerThread sender, boolean isConnected) {
         Iterator<ServerThread> iter = clients.iterator();
         while (iter.hasNext()) {
             ServerThread client = iter.next();
@@ -187,12 +187,14 @@ public class Room implements AutoCloseable{
             }
         }
     }
-    private void handleDisconnect(Iterator<ServerThread> iter, ServerThread client){
+    private void handleDisconnect(Iterator<ServerThread> iter, ServerThread client) {
         iter.remove();
         info("Removed client " + client.getClientName());
         checkClients();
         sendMessage(null, client.getClientName() + " disconnected");
     }
+
+    @Override
     public void close() {
         server.removeRoom(this);
         server = null;

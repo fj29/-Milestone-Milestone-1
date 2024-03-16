@@ -1,4 +1,4 @@
-package Module4.Part5;
+package Module5.Part5;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,7 +12,7 @@ public class Server {
     // connected clients
     // private List<ServerThread> clients = new ArrayList<ServerThread>();
     private List<Room> rooms = new ArrayList<Room>();
-    private Room lobby = null;// default room
+    private Room lobby = null; // default room
 
     private void start(int port) {
         this.port = port;
@@ -21,7 +21,7 @@ public class Server {
             Socket incoming_client = null;
             System.out.println("Server is listening on port " + port);
             // Reference server statically
-            Room.server = this;// all rooms will have the same reference
+            Room.server = this; // all rooms will have the same reference
             // create a lobby on start
             lobby = new Room("Lobby");
             rooms.add(lobby);
@@ -69,7 +69,7 @@ public class Server {
      * @return true if reassign worked; false if new room doesn't exist
      */
     protected synchronized boolean joinRoom(String roomName, ServerThread client) {
-        Room newRoom = roomName.equalsIgnoreCase("lobby")?lobby:getRoom(roomName);
+        Room newRoom = roomName.equalsIgnoreCase("lobby") ? lobby : getRoom(roomName);
         Room oldRoom = client.getCurrentRoom();
         if (newRoom != null) {
             if (oldRoom != null) {

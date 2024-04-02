@@ -229,7 +229,10 @@ public enum Client {
     }
 
     private void sendMessage(String message) throws IOException {
-        Payload p = new Payload();
+        Payload p = new Payload();                      // FJ28 4/1/23 
+        if(processClientCommand(message)){
+            return;
+        }
         p.setPayloadType(PayloadType.MESSAGE);
         p.setMessage(message);
         // no need to send an identifier, because the server knows who we are

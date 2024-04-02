@@ -33,6 +33,8 @@ public class ServerThread extends Thread {
         logger.info(String.format("Thread[%s]: %s", getClientName(), message));
     }
 
+// ucid: fj28 
+// date: 4/1/24
     public ServerThread(Socket myClient/* , Room room */) {
         info("Thread created");
         // get communication channels to single client
